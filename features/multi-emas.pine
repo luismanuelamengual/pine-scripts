@@ -1,0 +1,17 @@
+//Multi Emas
+meEnabled = input.bool(true, "Enabled", group="Multi Emas Settings")
+meLength1 = input.int(21, minval=1, title="Ema 1 Length", group="Multi Emas Settings")
+meLength2 = input.int(50, minval=1, title="Ema 2 Length", group="Multi Emas Settings")
+meLength3 = input.int(200, minval=1, title="Ema 3 Length", group="Multi Emas Settings")
+meBullColor = input.color(color.green, "Bull color", group="Multi Emas Settings")
+meBearColor = input.color(color.red, "Bear color", group="Multi Emas Settings")
+me1 = ta.ema(close, meLength1)
+me2 = ta.ema(close, meLength2)
+me3 = ta.ema(close, meLength3)
+meAscending = me1 > me2 and me2 > me3
+meDescending = me1 < me2 and me2 < me3
+me1Line = plot(me1, display=display.none)
+me2Line = plot(me2, display=display.none)
+me3Line = plot(me3, display=display.none)
+fill(me3Line, me2Line, me2 > me3 ? color.new(meBullColor, 90) : color.new(meBearColor, 90), fillgaps=false, display=meEnabled ? display.all : display.none)
+fill(me3Line, me1Line, me1 > me3 ? color.new(meBullColor, 90) : color.new(meBearColor, 90), fillgaps=false, display=meEnabled ? display.all : display.none)

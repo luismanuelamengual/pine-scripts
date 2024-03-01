@@ -1,0 +1,8 @@
+// Ema
+emaEnabled = input.bool(true, "Enabled", group="Ema Settings")
+emaLength = input.int(600, "Lenght", minval=1, group="Ema Settings")
+emaColor = input.color(color.yellow, "Color", group="Ema Settings")
+ema = ta.ema(close, emaLength)
+emaAscending = close > ema
+emaDescending = close < ema
+plot(ema, color=emaColor, linewidth = 2, display=emaEnabled ? display.all : display.none)

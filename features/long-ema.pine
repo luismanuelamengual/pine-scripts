@@ -1,8 +1,0 @@
-//LongTerm Ema
-leEnabled = input.bool(true, "Enabled", group="Long Ema Settings")
-leLen = input.int(600, "Lenght", minval=1, group="Long Ema Settings")
-leColor = input.color(color.yellow, "Color", group="Long Ema Settings")
-leEma = ta.ema(close, leLen)
-leAscending = close > leEma
-leDescending = close < leEma
-plot(leEma, color=leColor, linewidth = 2, display=leEnabled ? display.all : display.none)
