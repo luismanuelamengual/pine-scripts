@@ -1,0 +1,7 @@
+//RSI
+rsiLength = input.int(14, minval=1, title="Length", group="RSI Settings")
+rsiUp = ta.rma(math.max(ta.change(close), 0), rsiLength)
+rsiDown = ta.rma(-math.min(ta.change(close), 0), rsiLength)
+rsi = rsiDown == 0 ? 100 : rsiUp == 0 ? 0 : 100 - (100 / (1 + rsiUp / rsiDown))
+rsiBullish = rsi > 50
+rsiBearish = rsi < 50

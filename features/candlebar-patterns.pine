@@ -1,0 +1,16 @@
+//Candlebar Patterns
+GetPipSize() => syminfo.mintick * (syminfo.type == "forex" ? 10 : 1)
+cpEnabled = input.bool(true, "Enabled", group="Candlebar Pattern Settings")
+cpBarRange = math.abs(open - close)
+cpBarRangeInPips = cpBarRange / GetPipSize()
+cpBullish = close > open
+cpBearish = close < open
+cpBigAss = cpBarRangeInPips > 4
+cpBullishEngulfing = cpBigAss and open <= close[1] and open < open[1] and close > open[1]
+cpBearishEngulfing = cpBigAss and  open >= close[1] and open > open[1] and close < open[1]
+cpBullishCandlesPattern = cpBearish[3] and cpBearish[2] and cpBearish[1]  and cpBullishEngulfing
+cpBearishCandlesPattern = cpBullish[3] and cpBullish[2] and cpBullish[1] and cpBearishEngulfing
+plotshape(cpBullishEngulfing and not cpBullishCandlesPattern, style=shape.triangleup, location=location.belowbar, color=color.green, size=size.tiny, title="Candle pattern up", display=cpEnabled ? display.all : display.none)
+plotshape(cpBearishEngulfing and not cpBearishCandlesPattern, style=shape.triangledown, location=location.abovebar, color=color.red, size=size.tiny, title="Candle pattern down", display=cpEnabled ? display.all : display.none)
+plotshape(cpBullishCandlesPattern, style=shape.triangleup, location=location.belowbar, color=color.green, size=size.small, title="Candle pattern up", display=cpEnabled ? display.all : display.none)
+plotshape(cpBearishCandlesPattern, style=shape.triangledown, location=location.abovebar, color=color.red, size=size.small, title="Candle pattern down", display=cpEnabled ? display.all : display.none)

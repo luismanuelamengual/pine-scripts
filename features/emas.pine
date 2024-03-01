@@ -1,0 +1,17 @@
+//ShortTerm Emas
+emaEnabled = input.bool(true, "Enabled", group="Ema Settings")
+emaLen1 = input.int(21, minval=1, title="Ema 1 Length", group="Ema Settings")
+emaLen2 = input.int(50, minval=1, title="Ema 2 Length", group="Ema Settings")
+emaLen3 = input.int(200, minval=1, title="Ema 3 Length", group="Ema Settings")
+emaBullColor = input.color(color.green, "Bull color", group="Ema Settings")
+emaBearColor = input.color(color.red, "Bear color", group="Ema Settings")
+ema1 = ta.ema(close, emaLen1)
+ema2 = ta.ema(close, emaLen2)
+ema3 = ta.ema(close, emaLen3)
+emaAscending = ema1 > ema2 and ema2 > ema3
+emaDescending = ema1 < ema2 and ema2 < ema3
+ema3Line = plot(ema3, display=display.none)
+ema2Line = plot(ema2, display=display.none)
+ema1Line = plot(ema1, display=display.none)
+fill(ema3Line, ema2Line, ema2 > ema3 ? color.new(emaBullColor, 90) : color.new(emaBearColor, 90), fillgaps=false, display=emaEnabled ? display.all : display.none)
+fill(ema3Line, ema1Line, ema1 > ema3 ? color.new(emaBullColor, 90) : color.new(emaBearColor, 90), fillgaps=false, display=emaEnabled ? display.all : display.none)
