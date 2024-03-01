@@ -1,0 +1,16 @@
+// Confluences
+var table featuresTable = table.new(position.bottom_right, 1, 10, border_width=1, border_color=tableBorderColor, frame_width = 1, frame_color=tableBorderColor)
+var supportResistanceFeature = false
+var trendLineFeature = false
+var movingAverageFeature = false
+var divergencesFeature = false
+var breakAndRetestFeature = false
+var candlebarPatternFeature = false
+if barstate.islastconfirmedhistory
+    table.cell(featuresTable, 0, 0, "Confluences", bgcolor=tableHeaderColor, text_color=color.white)
+    table.cell(featuresTable, 0, 1, "Support/Resistance", bgcolor=supportResistanceFeature ? tableSuccessColor : tableValueColor, text_color=color.white)
+    table.cell(featuresTable, 0, 2, "Trend Line", bgcolor=trendLineFeature ? tableSuccessColor : tableValueColor, text_color=color.white)
+    table.cell(featuresTable, 0, 3, "Moving Average", bgcolor=movingAverageFeature ? tableSuccessColor : tableValueColor, text_color=color.white)
+    table.cell(featuresTable, 0, 4, "Divergences", bgcolor=divergencesFeature ? tableSuccessColor : tableValueColor, text_color=color.white)
+    table.cell(featuresTable, 0, 5, "Break & Retest", bgcolor=breakAndRetestFeature ? tableSuccessColor : tableValueColor, text_color=color.white) 
+    table.cell(featuresTable, 0, 6, "Candlebar patterns", bgcolor=candlebarPatternFeature ? tableSuccessColor : tableValueColor, text_color=color.white)
