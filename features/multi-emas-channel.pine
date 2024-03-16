@@ -1,0 +1,18 @@
+//Multi Ema Channel
+mecFeatureName = "Multi Ema Channel"
+mecEnabled = input.bool(true, "Enabled", group=mecFeatureName)
+mecLength1 = input.int(21, minval=1, title="Ema 1 Length", group=mecFeatureName)
+mecLength2 = input.int(50, minval=1, title="Ema 2 Length", group=mecFeatureName)
+mecLength3 = input.int(200, minval=1, title="Ema 3 Length", group=mecFeatureName)
+mecBullColor = input.color(color.new(color.green, 90), "Bull color", group=mecFeatureName)
+mecBearColor = input.color(color.new(color.red, 90), "Bear color", group=mecFeatureName)
+mec1 = ta.ema(close, mecLength1)
+mec2 = ta.ema(close, mecLength2)
+mec3 = ta.ema(close, mecLength3)
+mecBulllish = mec1 > mec2 and mec2 > mec3
+mecBearish = mec1 < mec2 and mec2 < mec3
+mec1Line = plot(mec1, display=display.none)
+mec2Line = plot(mec2, display=display.none)
+mec3Line = plot(mec3, display=display.none)
+fill(mec3Line, mec2Line, mec2 > mec3 ? mecBullColor : mecBearColor, fillgaps=false, display=mecEnabled ? display.all : display.none)
+fill(mec3Line, mec1Line, mec1 > mec3 ? mecBullColor : mecBearColor, fillgaps=false, display=mecEnabled ? display.all : display.none)

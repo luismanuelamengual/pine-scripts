@@ -1,11 +1,9 @@
 // Tips
-var tableBorderColor = color.white
-var tableHeaderColor = color.blue
-var tableValueColor = color.black
-var tableSuccessColor = color.green
-var tableFailureColor = color.red
-var table dataTable = table.new(position.top_right, 1, 10, border_width=1, border_color=tableBorderColor, frame_width = 1, frame_color=tableBorderColor)
+var ttBorderColor = color.white
+var ttHeaderColor = color.blue
+var ttValueColor = color.black
+var table ttTable = table.new(position.top_right, 1, 10, border_width=1, border_color=ttBorderColor, frame_width = 1, frame_color=ttBorderColor)
 if barstate.islastconfirmedhistory
-    table.cell(dataTable, 0, 0, "Tips", bgcolor=tableHeaderColor, text_color=color.white)
-    table.cell(dataTable, 0, 1, "Enfocarse en el 'PROCESO', no en el 'RESULTADO'", bgcolor=tableValueColor, text_color=color.white)
-    table.cell(dataTable, 0, 2, "Evitar trades de VENGANZA", bgcolor=tableValueColor, text_color=color.white)
+    table.cell(ttTable, 0, 0, "Tips", bgcolor=ttHeaderColor, text_color=color.white)
+    table.cell(ttTable, 0, 1, "Enfocarse en el 'PROCESO', no en el 'RESULTADO'", bgcolor=ttValueColor, text_color=color.white)
+    table.cell(ttTable, 0, 2, "Evitar trades de VENGANZA", bgcolor=ttValueColor, text_color=color.white)

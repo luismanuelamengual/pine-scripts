@@ -1,7 +1,8 @@
 //Time Window
-twEnabled = input.bool(true, "Enabled", group="Time Window Settings")
-twColor = input.color(color.new(color.blue, 90), "Color", group="Time Window Settings")
-twFromHour = input.int(11, "From Hour", group="Time Window Settings")
-twToHour = input.int(21, "To Hour", group="Time Window Settings")
+twFeatureName="Time Window"
+twEnabled = input.bool(true, "Enabled", group=twFeatureName)
+twColor = input.color(color.new(color.blue, 90), "Color", group=twFeatureName)
+twFromHour = input.int(11, "From Hour", group=twFeatureName)
+twToHour = input.int(21, "To Hour", group=twFeatureName)
 twOnWindow = hour(time, "GMT+0") >= twFromHour and hour(time, "GMT+0") < twToHour
 bgcolor(twOnWindow and twEnabled? twColor : na)

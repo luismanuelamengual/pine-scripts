@@ -1,8 +1,9 @@
 //Candlebar Patterns
-GetPipSize() => syminfo.mintick * (syminfo.type == "forex" ? 10 : 1)
-cpEnabled = input.bool(true, "Enabled", group="Candlebar Pattern Settings")
+var cpFeatureName = "Candlebar Patterns"
+cpGetPipSize() => syminfo.mintick * (syminfo.type == "forex" ? 10 : 1)
+cpEnabled = input.bool(true, "Enabled", group=cpFeatureName)
 cpBarRange = math.abs(open - close)
-cpBarRangeInPips = cpBarRange / GetPipSize()
+cpBarRangeInPips = cpBarRange / cpGetPipSize()
 cpBullish = close > open
 cpBearish = close < open
 cpBigAss = cpBarRangeInPips > 4

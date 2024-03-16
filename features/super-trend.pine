@@ -1,9 +1,10 @@
 //SuperTrend
-stEnabled = input.bool(false, "Enabled", group="SuperTrend Settings")
-stPeriod = input.int(10, "Length", group="SuperTrend Settings")
-stFactor = input.float(4.0, "Factor", step = 0.01, group="SuperTrend Settings")
-stBullColor = input.color(color.green, "Bull color", group="SuperTrend Settings")
-stBearColor = input.color(color.red, "Bear color", group="SuperTrend Settings")
+var stFeatureName = "SuperTrend"
+stEnabled = input.bool(false, "Enabled", group=stFeatureName)
+stPeriod = input.int(10, "Length", group=stFeatureName)
+stFactor = input.float(4.0, "Factor", step = 0.01, group=stFeatureName)
+stBullColor = input.color(color.green, "Bull color", group=stFeatureName)
+stBearColor = input.color(color.red, "Bear color", group=stFeatureName)
 [st, stDirection] = ta.supertrend(stFactor, stPeriod)
 stDescending = stDirection >= 0
 stAscending = stDirection < 0

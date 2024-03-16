@@ -1,6 +1,8 @@
 // Rsi divergencies
-rdLength = input.int(14, "RSI Length", minval=1)
-rdLoopBackLength = input.int(50, "Loop back Length")
+var rdFeatureName = "Rsi divergencies"
+rdEnabled = input.bool(true, "Enabled", group=rdFeatureName)
+rdLength = input.int(14, "RSI Length", minval=1, group=rdFeatureName)
+rdLoopBackLength = input.int(50, "Loop back Length", group=rdFeatureName)
 rdHighestPoint = high == ta.highest(high, rdLoopBackLength)
 rdLowestPoint = low == ta.lowest(low, rdLoopBackLength)
 rdRsi = ta.rsi(close, rdLength)
@@ -9,7 +11,7 @@ rdRsiHighest = ta.highest(rdDelayedRsi, rdLoopBackLength)
 rdRsiLowest = ta.lowest(rdDelayedRsi, rdLoopBackLength)
 rdHasHigherRsi = rdRsi < rdRsiHighest
 rdHasLowerRsi = rdRsi > rdRsiLowest
-rdBullDivergence = rdLowestPoint and rdHasLowerRsi
-rdBearDivergence = rdHighestPoint and rdHasHigherRsi
-plotshape(rdBullDivergence, style=shape.triangleup, location=location.belowbar, color=color.green, size=size.normal, title="Bull Divergence")
-plotshape(rdBearDivergence, style=shape.triangledown, location=location.abovebar, color=color.red, size=size.normal, title="Bear Divergence")
+rdBullish = rdLowestPoint and rdHasLowerRsi
+rdBearish = rdHighestPoint and rdHasHigherRsi
+plotshape(rdBullish, style=shape.triangleup, location=location.belowbar, color=color.green, size=size.normal, title="Bull Divergence", display=rdEnabled ? display.all : display.none)
+plotshape(rdBearish, style=shape.triangledown, location=location.abovebar, color=color.red, size=size.normal, title="Bear Divergence", display=rdEnabled ? display.all : display.none)
